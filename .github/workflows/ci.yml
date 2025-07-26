@@ -14,6 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Debugging step: Show directory structure to confirm files exist
+      - name: List repository files
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in repository:"
+          ls -R
+
       # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -26,7 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Train model
+      # Step 4: Run training script (this must succeed)
       - name: Run training script
         run: python src/train.py
 
